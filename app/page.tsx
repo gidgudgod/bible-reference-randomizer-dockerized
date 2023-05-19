@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import data from '../data/alkitab-tb.json'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import AudioPlayer from '@/components/AudioPlayer'
 
 function randomIntFromInterval(min, max) { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min)
@@ -20,6 +21,7 @@ export default function Home() {
     success: 0,
     fail: 0,
   })
+  const [playVictory, setPlayVictory] = useState(null)
 
   const generateRandomReference = () => {
     const dataBible: any = data;
@@ -63,6 +65,7 @@ export default function Home() {
   }
 
   const handleRestart = () => {
+    setPlayVictory(null)
     setScore({
       success: 0,
       fail: 0,
@@ -73,6 +76,7 @@ export default function Home() {
 
   useEffect(()=>{
     if(currentRound > (maxRound)){
+      setPlayVictory(true)
       setIsFinish(true)
       setIsPlaying(false)
       setIsWaiting(false)
@@ -96,7 +100,9 @@ export default function Home() {
   }, [isWaiting]);
 
   return (
-    <main className="flex min-h-screen max-w-5xl mx-auto flex-col items-center justify-center p-24 relative">
+    <main className="flex min-h-screen max-w-5xl mx-auto flex-col items-center justify-center p-2 md:p-24 relative">
+     <AudioPlayer audioSrc={'/Children-YAY.mp3'} play={playVictory} pause={null} />
+
       <div className='absolute top-2 right-4 flex gap-8'>
           <div className="form-control w-full max-w-xs">
             <label className="label">
