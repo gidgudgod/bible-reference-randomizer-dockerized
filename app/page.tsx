@@ -100,7 +100,7 @@ export default function Home() {
   }, [isWaiting]);
 
   return (
-    <main className="flex min-h-screen max-w-5xl mx-auto flex-col items-center justify-center p-2 md:p-24 relative">
+    <main className="flex min-h-[500px] max-w-5xl mx-auto flex-col items-center justify-center p-2 md:p-24 relative">
      <AudioPlayer audioSrc={'/Children-YAY.mp3'} play={playVictory} pause={null} />
 
       <div className='absolute top-2 right-4 flex gap-8'>
